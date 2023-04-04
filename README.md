@@ -10,3 +10,9 @@
   * TypeScript
   
   ![image](https://user-images.githubusercontent.com/80787027/229784584-25b9a91e-bd88-4a7b-8b05-6aa4156f66ce.png)
+  
+  # Steps to run in your machine
+### Run the following commands
+  * Download the code on your machine
+  * npm i
+  * npm run dev
