@@ -41,7 +41,13 @@ const Navbar = () => {
 		<div className="flex justify-between w-full items-center p-4">
 			<Link href="/">
 				<div className="w-fit flex justify-center items-center">
-					<Image src={logo} alt="Twitter" className="w-10 h-10 ml-2" />
+					<Image
+						src={logo}
+						alt="Twitter"
+						className="w-10 h-10 ml-2"
+						width={44}
+						height={44}
+					/>
 					<span className="hidden md:block ml-2 font-bold text-xl">
 						Twitter
 					</span>
