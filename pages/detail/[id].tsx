@@ -87,7 +87,7 @@ const Detail = ({ postDetails }: IProps) => {
 							</p>
 						</div>
 						<div className="relative">
-							<div className="lg:h-[100vh] h-[60vh]">
+							<div className="lg:h-[80vh] h-[60vh] flex justify-center align-center">
 								{post?.video !== null ? (
 									<video
 										ref={videoRef}
@@ -99,7 +99,7 @@ const Detail = ({ postDetails }: IProps) => {
 								) : (
 									<Image
 										src={post?.image?.asset?.url}
-										className=" h-[100%] lg:h-[70vh] w-[75%] lg:w-[35%] mt-[3rem] lg:fixed m-auto left-[17%] top-[7%] -z-10 lg:z-0 lg:left-[15%] lg:right-[50%] lg:top-[15%] rounded-2xl cursor-pointer"
+										className=" h-[100%] lg:h-[70vh] w-[75%] lg:w-[35%] mt-[3rem] lg:fixed m-auto left-[17%] top-[7%] -z-10 lg:z-0 lg:left-[15%] lg:right-[50%] lg:top-[15%] rounded-2xl cursor-pointer object-contain"
 										alt="Post"
 										width={350}
 										height={350}

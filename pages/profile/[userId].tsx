@@ -1,12 +1,11 @@
 import React, { useEffect, useState } from "react";
-import Image from "next/legacy/image";
 import { GoVerified } from "react-icons/go";
 import axios from "axios";
-
 import ContentCard from "../../components/ContentCard";
 import NoResults from "../../components/NoResults";
 import { IUser, Content } from "../../types";
 import { BASE_URL } from "../../utils";
+import Image from "next/image";
 
 interface IProps {
 	data: {
