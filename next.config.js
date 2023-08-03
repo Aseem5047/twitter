@@ -11,7 +11,8 @@ const nextConfig = {
       'p16-amd-va.tiktokcdn.com',
       'image.shutterstock.com',
       'images.pexels.com',
-      'cdn.sanity.io'
+      'cdn.sanity.io',
+      'miro.medium.com'
     ],
   },
 };

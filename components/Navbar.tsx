@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 import { AiOutlineLogout } from "react-icons/ai";
 import { BiSearch } from "react-icons/bi";
-import { SiGooglemessages } from "react-icons/si";
+import { BiMessageSquareDetail } from "react-icons/bi";
 import { IoMdAdd } from "react-icons/io";
 import { GoogleLogin, googleLogout } from "@react-oauth/google";
 import logo from "../utils/logo.png";
@@ -66,14 +66,19 @@ const Navbar = () => {
 			</div>
 			<div>
 				{user ? (
-					<div className="flex gap-5 md:gap-10 items-center">
-						<Link href="/chat">
-							<SiGooglemessages className="text-2xl" />
-						</Link>
+					<div className="flex gap-5 md:gap-10 items-center bg-transparent">
 						<Link href="/upload">
 							<button className="border-2 p-2 md:px-4 text-md font-semibold flex items-center gap-2 rounded-full cursor-pointer hover:opacity-70">
 								<IoMdAdd className="text-xl" />{" "}
 								<span className="hidden md:block">Upload </span>
+							</button>
+						</Link>
+						<Link href="/chats" className="bg-transparent">
+							<button
+								type="button"
+								className="border-2 p-2 rounded-full outline-none shadow-md cursor-pointer hover:opacity-70 -ml-4"
+							>
+								<BiMessageSquareDetail className="text-2xl" />
 							</button>
 						</Link>
 						{user.image && (
