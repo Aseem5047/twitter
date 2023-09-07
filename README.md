@@ -1,6 +1,6 @@
 ![image](https://github.com/Aseem5047/twitter/assets/80787027/2ff31437-166e-4da2-9f15-994548933c01)
 
-Deployed version of same Application - https://twitterrrx.vercel.app/
+## Deployed version of same Application - https://twitterrrx.vercel.app/
 
 ![image](https://user-images.githubusercontent.com/80787027/229783497-fd711df7-a9a0-4dbe-89ca-b8e2e0c6cb6f.png)
 
