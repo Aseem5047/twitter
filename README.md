@@ -1,4 +1,4 @@
-![image](https://github.com/Aseem5047/twitter/assets/80787027/5302cc42-838d-4a4a-92e3-8c03d2de71b3)
+![image](https://github.com/Aseem5047/twitter/assets/80787027/2ff31437-166e-4da2-9f15-994548933c01)
 
 Deployed version of same Application - https://twitterrrx.vercel.app/
 
@@ -6,7 +6,7 @@ Deployed version of same Application - https://twitterrrx.vercel.app/
 
 ## This Application allows users to create an account, upload and share photos and videos, like and comment on posts, and use usernames to discover new content.
 
-![image](https://github.com/Aseem5047/twitter/assets/80787027/da52f458-8761-4f63-94c9-16eb27ce33d8)
+![image](https://github.com/Aseem5047/twitter/assets/80787027/4b8a6b11-17c6-432e-8984-788d7299b470)
 
 # Tech Used
   * NextJs
