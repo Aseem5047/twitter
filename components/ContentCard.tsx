@@ -77,7 +77,7 @@ const ContentCard: NextPage<IProps> = ({
 	}
 
 	return (
-		<div className="flex flex-col justify-center items-start gap-5 border-b border-gray-200 pb-6 w-fit last:mb-7">
+		<div className="flex flex-col justify-center items-start gap-5 border-b border-gray-200 pb-6 w-fit last:mb-7 3xl:last:mb-0">
 			<div className="flex gap-3 p-2 cursor-pointer font-semibold rounded mt-2">
 				<div className="md:w-16 md:h-16 w-10 h-10">
 					<Link href={`/profile/${postedBy?._id}`}>

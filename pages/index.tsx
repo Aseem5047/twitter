@@ -1,15 +1,22 @@
+import { useEffect, useState } from "react";
 import Head from "next/head";
 import axios from "axios";
 import { BASE_URL } from "../utils";
 import { Content } from "../types";
 import ContentCard from "../components/ContentCard";
 import NoResults from "../components/NoResults";
+import Loader from "../components/Loader";
 
 interface IProps {
 	content: Content[];
 }
+
 export default function Home({ content }: IProps) {
-	// console.log(content);
+	const [loading, setLoading] = useState(true);
+
+	useEffect(() => {
+		setTimeout(() => setLoading(false), 2000);
+	}, []);
 
 	return (
 		<>
@@ -19,19 +26,24 @@ export default function Home({ content }: IProps) {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/twitter.ico" />
 			</Head>
-			<div
-				className={`grid grid-cols-1 overflow-y-scroll ${
-					content.length > 0 && "md:grid-cols-2"
-				}  items-center gap-7 p-7 w-full`}
-			>
-				{content.length > 0 ? (
-					content.map((item: Content) => (
-						<ContentCard post={item} isShowingOnHome key={item._id} />
-					))
-				) : (
-					<NoResults text={`No Post / Post of selected Category Yet !`} />
-				)}
-			</div>
+			{/* Conditional rendering based on loading state */}
+			{loading ? (
+				<Loader /> // Render loader when loading is true
+			) : (
+				<div
+					className={`grid grid-cols-1 overflow-y-scroll ${
+						content.length > 0 && "md:grid-cols-2 3xl:grid-cols-3"
+					}  items-center justify-center gap-7 p-7 w-full`}
+				>
+					{content.length > 0 ? (
+						content.map((item: Content) => (
+							<ContentCard post={item} isShowingOnHome key={item._id} />
+						))
+					) : (
+						<NoResults text={`No Post / Post of selected Category Yet !`} />
+					)}
+				</div>
+			)}
 		</>
 	);
 }
@@ -42,8 +54,6 @@ export const getServerSideProps = async ({
 	query: { topic: string };
 }) => {
 	let response = await axios.get(`${BASE_URL}/api/post`);
-
-	// console.log(topic + " from index");
 
 	if (topic) {
 		response = await axios.get(`${BASE_URL}/api/discover/${topic}`);

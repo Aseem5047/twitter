@@ -12,7 +12,8 @@ const nextConfig = {
       'image.shutterstock.com',
       'images.pexels.com',
       'cdn.sanity.io',
-      'miro.medium.com'
+      'miro.medium.com',
+      'cdn.dribbble.com'
     ],
   },
 };

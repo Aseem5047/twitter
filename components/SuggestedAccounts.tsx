@@ -20,8 +20,8 @@ const SuggestedAccounts: NextPage<IProps> = ({ fetchAllUsers, allUsers }) => {
 
 	return (
 		<div className="xl:border-b-2 border-gray-200 pb-4">
-			<p className="text-gray-300 text-sm text-center md:text-start xl:text-base font-semibold m-3 mt-4 ">
-				<span className="hidden md:block">Suggested</span> Accounts
+			<p className="text-gray-300 text-sm text-center md:text-start xl:text-base font-semibold m-3 mt-4 hidden md:block">
+				Suggested Accounts
 			</p>
 			<div>
 				{users.slice(0, 6).map((user: IUser) => (

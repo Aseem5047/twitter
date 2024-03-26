@@ -42,7 +42,7 @@ const Profile = ({ data }: IProps) => {
 	console.log(data);
 
 	return (
-		<div className="w-full pb-7">
+		<div className="w-full pb-7 overflow-y-scroll no-scrollbar">
 			<div className="flex gap-6 md:gap-10 mb-4 bg-transparent w-full">
 				<div className="w-16 h-16 md:w-32 md:h-32">
 					<Image
@@ -77,7 +77,7 @@ const Profile = ({ data }: IProps) => {
 					Liked
 				</p>
 			</div>
-			<div className="grid grid-cols-1 md:grid-cols-2 items-center w-fit gap-4 mt-10">
+			<div className="grid grid-cols-1 md:grid-cols-2 3xl:grid-cols-4 items-center w-fit gap-4 mt-10 ">
 				{contentList?.length > 0 ? (
 					contentList.map((post: Content, idx: number) => (
 						<ContentCard key={idx} post={post} />
