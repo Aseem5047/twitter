@@ -4,13 +4,13 @@ import React from "react";
 const Loader = () => {
 	return (
 		<>
-			<div className="h-screen flex items-center justify-center">
+			<div className="h-[85vh] flex items-center justify-center">
 				<Image
-					src="https://cdn.dribbble.com/users/1813781/screenshots/5597337/dribbble-girl-with-clock.gif"
+					src="https://cliply.co/wp-content/uploads/2019/07/371907030_TWITTER_ICON_400px.gif"
 					alt=""
-					className="m-auto rounded-xl w-80 h-60"
+					className="m-auto rounded-xl w-80 h-72"
 					width={320}
-					height={240}
+					height={288}
 				/>
 			</div>
 		</>

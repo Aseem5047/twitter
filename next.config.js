@@ -13,7 +13,7 @@ const nextConfig = {
       'images.pexels.com',
       'cdn.sanity.io',
       'miro.medium.com',
-      'cdn.dribbble.com'
+      "cliply.co"
     ],
   },
 };

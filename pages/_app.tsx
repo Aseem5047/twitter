@@ -4,11 +4,19 @@ import { useEffect, useState } from "react";
 import { GoogleOAuthProvider } from "@react-oauth/google";
 import Navbar from "../components/Navbar";
 import SideBar from "../components/SideBar";
+import dynamic from "next/dynamic";
+
+const Loader = dynamic(() => import("../components/Loader"));
 
 export default function App({ Component, pageProps }: AppProps) {
+	const [loading, setLoading] = useState(true);
 	const [isSSR, setIsSSR] = useState(true);
+
 	useEffect(() => {
 		setIsSSR(false);
+		setTimeout(() => {
+			setLoading(false);
+		}, 2500);
 	}, []);
 
 	if (isSSR) return null;
@@ -18,14 +26,19 @@ export default function App({ Component, pageProps }: AppProps) {
 		>
 			<div className="w-full px-2 lg:px-0 lg:w-[88%] m-auto overflow-hidden h-[100vh] text-white">
 				<Navbar />
-				<div className="flex gap-2 lg:gap-6 items-start">
-					<div className="h-[92vh] overflow-hidden hover:overflow-auto no-scrollbar pt-5 md:pt-0">
-						<SideBar />
+				{/* Conditional rendering based on loading state */}
+				{loading ? (
+					<Loader /> // Render loader when loading is true
+				) : (
+					<div className="flex gap-2 lg:gap-6 items-start">
+						<div className="h-[92vh] overflow-hidden hover:overflow-auto no-scrollbar pt-5 md:pt-0">
+							<SideBar />
+						</div>
+						<div className="flex flex-col gap-10 h-[90.5vh] flex-1 content">
+							<Component {...pageProps} />
+						</div>
 					</div>
-					<div className="flex flex-col gap-10 h-[90.5vh] flex-1 content">
-						<Component {...pageProps} />
-					</div>
-				</div>
+				)}
 			</div>
 		</GoogleOAuthProvider>
 	);

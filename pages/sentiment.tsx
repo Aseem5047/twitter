@@ -194,7 +194,7 @@ const Sentiment = () => {
 								{tweets?.map((tweet, index) => (
 									<li
 										key={tweet + index}
-										className={`min-h-[8rem] max-h-40 overflow-y-scroll no-scrollbar px-4 py-2 rounded-xl border-2 border-white w-full hover:opacity-80 cursor-pointer whitespace-pre-wrap break-words ${
+										className={`min-h-[10rem] max-h-52 overflow-y-scroll no-scrollbar px-4 py-2 rounded-xl border-2 border-white w-full hover:opacity-80 cursor-pointer whitespace-pre-wrap break-words ${
 											selectedTweets.some(
 												(selectedTweet) => selectedTweet === tweet
 											) && "opacity-50"
