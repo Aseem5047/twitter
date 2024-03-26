@@ -42,7 +42,7 @@ const Profile = ({ data }: IProps) => {
 	console.log(data);
 
 	return (
-		<div className="w-full">
+		<div className="w-full pb-7">
 			<div className="flex gap-6 md:gap-10 mb-4 bg-transparent w-full">
 				<div className="w-16 h-16 md:w-32 md:h-32">
 					<Image
@@ -62,32 +62,31 @@ const Profile = ({ data }: IProps) => {
 					<p className="text-sm font-medium capitalize"> {user.userName}</p>
 				</div>
 			</div>
-			<div>
-				<div className="flex gap-10 mb-10 mt-10 bg-transparent w-full">
-					<p
-						className={`text-xl font-semibold cursor-pointer ${Contents} mt-2`}
-						onClick={() => setShowUserContent(true)}
-					>
-						Posts
-					</p>
-					<p
-						className={`text-xl font-semibold cursor-pointer ${liked} mt-2`}
-						onClick={() => setShowUserContent(false)}
-					>
-						Liked
-					</p>
-				</div>
-				<div className="flex gap-6 flex-wrap md:justify-start">
-					{contentList?.length > 0 ? (
-						contentList.map((post: Content, idx: number) => (
-							<ContentCard key={idx} post={post} />
-						))
-					) : (
-						<NoResults
-							text={`No ${showUserContent ? "" : "Liked"} Contents Yet`}
-						/>
-					)}
-				</div>
+
+			<div className="flex gap-10 bg-transparent w-full">
+				<p
+					className={`text-xl font-semibold cursor-pointer ${Contents} mt-2`}
+					onClick={() => setShowUserContent(true)}
+				>
+					Posts
+				</p>
+				<p
+					className={`text-xl font-semibold cursor-pointer ${liked} mt-2`}
+					onClick={() => setShowUserContent(false)}
+				>
+					Liked
+				</p>
+			</div>
+			<div className="grid grid-cols-1 md:grid-cols-2 items-center w-fit gap-4 mt-10">
+				{contentList?.length > 0 ? (
+					contentList.map((post: Content, idx: number) => (
+						<ContentCard key={idx} post={post} />
+					))
+				) : (
+					<NoResults
+						text={`No ${showUserContent ? "" : "Liked"} Contents Yet`}
+					/>
+				)}
 			</div>
 		</div>
 	);

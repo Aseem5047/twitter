@@ -1,5 +1,5 @@
 import React from "react";
-import { NextPage } from "next";
+// import { NextPage } from "next";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -15,19 +15,19 @@ const Discover = () => {
 		" hover:opacity-[0.7]  px-3 py-2 rounded xl:rounded-full flex items-center gap-2 justify-start cursor-pointer text-white";
 	return (
 		<div className="xl:border-b-2 xl:border-gray-200 pb-6">
-			<p className="text-gray-300 font-semibold m-3 mt-4 hidden xl:block">
+			<p className="text-gray-300 font-semibold m-3 mt-4 hidden md:block">
 				Trending Topics
 			</p>
-			<div className="flex flex-col lg:flex-row flex-wrap gap-2">
+			<div className="grid grid-cols-1 lg:grid-cols-2 gap-2">
 				{topics?.map((item) => (
 					<Link href={`/?topic=${item?.name}`} key={item.name}>
 						<div
 							className={topic === item.name ? activeTopicStyle : topicStyle}
 						>
-							<span className="font-bold text-2xl xl:text-lg ">
+							<span className="font-bold text-2xl xl:text-lg mx-auto sm:mx-0">
 								{item.icon}
 							</span>
-							<span className="font-medium text-base hidden md:block capitalize">
+							<span className="font-medium text-xs sm:text-base  hidden sm:block capitalize">
 								{item.name}
 							</span>
 						</div>

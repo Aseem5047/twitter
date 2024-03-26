@@ -40,11 +40,11 @@ const Navbar = () => {
 	return (
 		<div className="flex justify-between w-full items-center p-4">
 			<Link href="/">
-				<div className="w-fit flex justify-center items-center">
+				<div className="w-fit flex justify-center items-center cursor-pointer hover:scale-105 transition-all duration-300 ease-in-out">
 					<Image
 						src={logo}
 						alt="Twitter"
-						className="w-10 h-10 ml-2"
+						className="w-10 h-10 ml-2 "
 						width={44}
 						height={44}
 					/>
@@ -53,7 +53,7 @@ const Navbar = () => {
 					</span>
 				</div>
 			</Link>
-			<div className="relative hidden md:block">
+			<div className="relative hidden lg:block">
 				<div className="absolute md:static top-10 -left-20 bg-transparent">
 					<input
 						value={searchTerm}
@@ -72,32 +72,31 @@ const Navbar = () => {
 			</div>
 			<div>
 				{user ? (
-					<div className="flex gap-5 md:gap-10 items-center bg-transparent">
+					<div className="flex gap-7 md:gap-10 items-center bg-transparent">
 						<Link href="/upload">
 							<button className="border-2 p-2 md:px-4 text-md font-semibold flex items-center gap-2 rounded-full cursor-pointer hover:opacity-70">
 								<IoMdAdd className="text-xl" />{" "}
 								<span className="hidden md:block">Upload </span>
 							</button>
 						</Link>
-						<Link href="/chats" className="bg-transparent">
+						<Link href="/sentiment" className="bg-transparent hidden lg:flex">
 							<button
 								type="button"
-								className="border-2 p-2 rounded-full outline-none shadow-md cursor-pointer hover:opacity-70 -ml-4"
+								className="border-2 p-2 md:px-4 text-md font-semibold flex items-center gap-2 rounded-full cursor-pointer hover:opacity-70 -ml-4"
 							>
 								<BiMessageSquareDetail className="text-2xl" />
+								<span className="hidden md:block">Tweets </span>
 							</button>
 						</Link>
 						{user.image && (
 							<Link href={`/profile/${user._id}`}>
-								<div>
-									<Image
-										className="rounded-full cursor-pointer hover:opacity-70"
-										src={user.image}
-										alt="user"
-										width={40}
-										height={40}
-									/>
-								</div>
+								<Image
+									className="rounded-full cursor-pointer hover:opacity-70"
+									src={user.image}
+									alt="user"
+									width={40}
+									height={40}
+								/>
 							</Link>
 						)}
 						<button

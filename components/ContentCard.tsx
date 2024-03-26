@@ -39,23 +39,23 @@ const ContentCard: NextPage<IProps> = ({
 
 	if (!isShowingOnHome) {
 		return (
-			<div>
+			<div className="flex flex-col items-start justify-center w-full">
 				<Link href={`/detail/${_id}`}>
 					{video !== null ? (
 						<video
 							loop
 							src={video.asset.url}
-							className="lg:w-[400px] h-[200px] md:w-[300px] md:h-[300px] lg:h-[400px] w-[200px] rounded-2xl cursor-pointer bg-gray-800"
-							width={350}
-							height={350}
+							className="w-full h-[300px] aspect-square  rounded-2xl cursor-pointer bg-gray-800 object-cover"
+							width={300}
+							height={300}
 						></video>
 					) : (
 						<Image
 							src={image.asset.url}
-							className="lg:w-[400px] h-[200px] md:w-[300px] md:h-[300px] lg:h-[400px] w-[200px] rounded-2xl cursor-pointer bg-gray-800"
+							className="w-full h-full object-cover aspect-square rounded-2xl cursor-pointer bg-gray-800"
 							alt="Post"
-							width={250}
-							height={250}
+							width={300}
+							height={300}
 						/>
 					)}
 				</Link>
@@ -77,70 +77,63 @@ const ContentCard: NextPage<IProps> = ({
 	}
 
 	return (
-		<div className="flex flex-col border-b border-gray-200 py-6">
-			<div>
-				<div className="flex gap-3 p-2 cursor-pointer font-semibold rounded mt-2">
-					<div className="md:w-16 md:h-16 w-10 h-10">
-						<Link href={`/profile/${postedBy?._id}`}>
-							<>
-								<Image
-									width={62}
-									height={62}
-									className=" rounded-full"
-									src={postedBy?.image}
-									alt="user-profile"
-								/>
-							</>
-						</Link>
-					</div>
-					<div>
-						<Link href={`/profile/${postedBy?._id}`}>
-							<div className="flex items-center gap-2">
-								<p className="flex gap-2 items-center md:text-md font-bold text-primary">
-									{postedBy.userName}{" "}
-									<GoVerified className="text-blue-400 text-md" />
-								</p>
-								<p className="capitalize font-medium text-xs text-gray-500 hidden md:block">
-									{postedBy.userName}
-								</p>
-							</div>
-						</Link>
-						<Link href={`/detail/${_id}`}>
-							<p className="mt-2 font-normal ">{caption}</p>
-						</Link>
-					</div>
+		<div className="flex flex-col justify-center items-start gap-5 border-b border-gray-200 pb-6 w-fit last:mb-7">
+			<div className="flex gap-3 p-2 cursor-pointer font-semibold rounded mt-2">
+				<div className="md:w-16 md:h-16 w-10 h-10">
+					<Link href={`/profile/${postedBy?._id}`}>
+						<Image
+							width={62}
+							height={62}
+							className=" rounded-full"
+							src={postedBy?.image}
+							alt="user-profile"
+						/>
+					</Link>
+				</div>
+				<div className="flex flex-col items-start justify-center">
+					<Link href={`/profile/${postedBy?._id}`}>
+						<div className="flex items-center gap-2 flex-wrap">
+							<p className="flex gap-2 items-center md:text-md font-bold text-primary">
+								{postedBy.userName}
+							</p>
+							<p className="capitalize font-medium text-xs text-gray-500 flex items-center gap-1">
+								<GoVerified className="text-blue-400 text-md" />
+								{postedBy.userName}
+							</p>
+						</div>
+					</Link>
 				</div>
 			</div>
 
-			<div className="lg:ml-20 flex gap-4 relative">
+			<div className="flex items-center relative">
 				<div
 					onMouseEnter={() => setIsHover(true)}
 					onMouseLeave={() => setIsHover(false)}
-					className="rounded-3xl"
+					className="rounded-3xl w-fit"
 				>
-					<Link href={`/detail/${_id}`}>
+					<Link href={`/detail/${_id}`} className="w-full">
 						{video !== null ? (
 							<video
 								loop
 								ref={videoRef}
 								src={video.asset.url}
-								className="lg:w-[500px] h-[200px] md:w-[300px] md:h-[300px] lg:h-[528px] w-[200px] rounded-2xl cursor-pointer bg-gray-800"
-								width={350}
-								height={350}
+								className="w-full max-h-[400px] object-cover aspect-square rounded-2xl cursor-pointer bg-gray-800"
+								width={400}
+								height={400}
 							></video>
 						) : (
 							<Image
 								src={image.asset.url}
-								className="lg:w-[500px] h-[200px] md:w-[300px] md:h-[300px] lg:h-[528px] w-[200px] rounded-2xl cursor-pointer bg-transparent"
+								className="w-full max-h-[400px] object-cover aspect-square rounded-2xl cursor-pointer bg-gray-800"
 								alt="Post"
-								width={350}
-								height={350}
+								width={400}
+								height={400}
 							/>
 						)}
 					</Link>
 
 					{video !== null && isHover && (
-						<div className="absolute bottom-6 cursor-pointer left-0 flex gap-10 justify-between w-[200px] md:w-[300px] lg:w-[500px] p-3">
+						<div className="absolute bottom-6 cursor-pointer left-0 flex gap-10 justify-between w-full py-2 px-5">
 							{playing ? (
 								<button onClick={onVideoPress}>
 									<BsFillPauseFill className="text-white text-2xl lg:text-4xl" />
@@ -163,6 +156,14 @@ const ContentCard: NextPage<IProps> = ({
 					)}
 				</div>
 			</div>
+			<Link href={`/detail/${_id}`}>
+				<div className="flex flex-col items-start gap-2 justify-center">
+					<span className="font-medium">Description</span>
+					<p className="font-normal h-full max-h-20 text-ellipsis  overflow-x-hidden overflow-y-scroll no-scrollbar text-sm">
+						{caption}
+					</p>
+				</div>
+			</Link>
 		</div>
 	);
 };

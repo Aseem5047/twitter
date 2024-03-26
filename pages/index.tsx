@@ -19,8 +19,12 @@ export default function Home({ content }: IProps) {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/twitter.ico" />
 			</Head>
-			<div className="flex flex-col gap-10 videos h-full">
-				{content.length ? (
+			<div
+				className={`grid grid-cols-1 overflow-y-scroll ${
+					content.length > 0 && "md:grid-cols-2"
+				}  items-center gap-7 p-7 w-full`}
+			>
+				{content.length > 0 ? (
 					content.map((item: Content) => (
 						<ContentCard post={item} isShowingOnHome key={item._id} />
 					))

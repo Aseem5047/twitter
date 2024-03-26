@@ -29,8 +29,8 @@ const Search = ({ content }: IProps) => {
 	);
 
 	return (
-		<div className="w-full">
-			<div className="flex gap-10 mb-10  md:fixed z-50 bg-transparent w-full">
+		<div className="flex flex-col items-start justify-center gap-7 pt-4">
+			<div className="flex gap-10 z-40 bg-transparent w-full">
 				<p
 					onClick={() => setIsAccounts(true)}
 					className={`text-xl  font-semibold cursor-pointer ${accounts} mt-2`}
@@ -45,11 +45,11 @@ const Search = ({ content }: IProps) => {
 				</p>
 			</div>
 			{isAccounts ? (
-				<div className="md:mt-16">
+				<div className="pt-4 w-full">
 					{searchedAccounts.length > 0 ? (
 						searchedAccounts.map((user: IUser, idx: number) => (
 							<Link key={idx} href={`/profile/${user._id}`}>
-								<div className=" flex gap-3 p-2 cursor-pointer font-semibold rounded border-b border-gray-200 py-4">
+								<div className=" flex gap-3 cursor-pointer font-semibold rounded border-b border-gray-200 p-4">
 									<div>
 										<Image
 											width={50}
@@ -73,19 +73,23 @@ const Search = ({ content }: IProps) => {
 							</Link>
 						))
 					) : (
-						<div className="mt-[10rem]">
+						<div className="pt-20">
 							<NoResults text={`No Account Results for ${searchTerm}`} />
 						</div>
 					)}
 				</div>
 			) : (
-				<div className="md:mt-16 flex flex-wrap gap-6 md:justify-start ">
-					{content.length ? (
+				<div
+					className={`grid grid-cols-1 ${
+						content.length > 0 && "md:grid-cols-2 !w-fit"
+					}  items-center gap-4 mt-7 w-full`}
+				>
+					{content.length > 0 ? (
 						content.map((post: Content, idx: number) => (
 							<ContentCard post={post} key={idx} />
 						))
 					) : (
-						<div className="mt-[10rem]">
+						<div className="pt-20">
 							<NoResults text={`No Content Results for ${searchTerm}`} />
 						</div>
 					)}

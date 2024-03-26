@@ -33,7 +33,7 @@ const LikeButton: NextPage<IProps> = ({
 
 	return (
 		<div className={`${flex} gap-6`}>
-			<div className="mt-4 flex flex-col justify-center items-center cursor-pointer">
+			<div className="mt-4 flex flex-col justify-center items-center cursor-pointer hover:scale-105 transition-all duration-500 ease-in-out">
 				{alreadyLiked ? (
 					<div
 						className="bg-gray-700 rounded-full p-2 md:p-4 text-[#F51997] "

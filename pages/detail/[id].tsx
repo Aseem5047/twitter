@@ -78,8 +78,8 @@ const Detail = ({ postDetails }: IProps) => {
 	return (
 		<>
 			{post && (
-				<div className="flex w-full absolute left-0 top-0 bg-[#15202b] text-white flex-wrap lg:flex-nowrap z-30">
-					<div className="relative flex-2 w-[1000px] lg:w-9/12 flex justify-center items-center bg-transparent">
+				<div className="grid grid-cols-1 lg:grid-cols-2 w-full h-full overflow-x-hidden absolute left-0 top-0 bg-[#15202b] text-white flex-wrap lg:flex-nowrap z-30">
+					<div className="relative flex-2  flex justify-center items-center bg-transparent">
 						{/* bg-blurred-img bg-no-repeat bg-cover bg-center */}
 						<div className="opacity-90 absolute top-6 left-2 lg:left-6 flex gap-6 z-50">
 							<p className="cursor-pointer " onClick={() => router.back()}>
@@ -87,27 +87,29 @@ const Detail = ({ postDetails }: IProps) => {
 							</p>
 						</div>
 						<div className="relative">
-							<div className="lg:h-[80vh] h-[60vh] flex justify-center align-center">
+							<div className="lg:h-[80vh] h-[50vh] w-3/4 pt-10 lg:w-full m-auto lg:pt-0 flex justify-center align-center">
 								{post?.video !== null ? (
 									<video
 										ref={videoRef}
 										onClick={onVideoClick}
 										loop
 										src={post?.video?.asset.url}
-										className=" h-full cursor-pointer"
+										className="rounded-2xl m-10 lg:m-0 cursor-pointer object-cover"
+										width={500}
+										height={500}
 									></video>
 								) : (
 									<Image
 										src={post?.image?.asset?.url}
-										className=" h-[100%] lg:h-[70vh] w-[75%] lg:w-[35%] mt-[3rem] lg:fixed m-auto left-[17%] top-[7%] -z-10 lg:z-0 lg:left-[15%] lg:right-[50%] lg:top-[15%] rounded-2xl cursor-pointer object-contain"
+										className="rounded-2xl cursor-pointer object-cover"
 										alt="Post"
-										width={350}
-										height={350}
+										width={500}
+										height={500}
 									/>
 								)}
 							</div>
 							{post?.video !== null && (
-								<div className="absolute top-[45%] left-[40%]  cursor-pointer">
+								<div className="absolute top-[45%] left-[45%]  cursor-pointer">
 									{!isPlaying && (
 										<button onClick={onVideoClick}>
 											<BsFillPlayFill className="text-white text-6xl lg:text-8xl" />
@@ -117,7 +119,7 @@ const Detail = ({ postDetails }: IProps) => {
 							)}
 						</div>
 						{post?.video !== null && (
-							<div className="absolute bottom-5 lg:bottom-10 right-5 lg:right-10  cursor-pointer">
+							<div className="absolute bottom-0 lg:bottom-10 right-5 lg:right-10 cursor-pointer">
 								{isVideoMuted ? (
 									<button onClick={() => setIsVideoMuted(false)}>
 										<HiVolumeOff className="text-white text-3xl lg:text-4xl" />
@@ -130,47 +132,48 @@ const Detail = ({ postDetails }: IProps) => {
 							</div>
 						)}
 					</div>
-					<div className="relative w-[1000px] md:w-[900px] lg:w-[700px]">
-						<div className="lg:mt-20 mt-10">
-							<Link href={`/profile/${post.postedBy._id}`}>
-								<div className="flex gap-4 mb-4 bg-transparent w-full pl-10 cursor-pointer">
-									<Image
-										width={60}
-										height={60}
-										alt="user-profile"
-										className="rounded-full"
-										src={post.postedBy.image}
-									/>
-									<div>
-										<div className="text-xl font-bold lowercase tracking-wider flex gap-2 items-center justify-center">
-											{post.postedBy.userName.replace(/\s+/g, "")}{" "}
-											<GoVerified className="text-blue-400 text-xl" />
-										</div>
-										<p className="text-md"> {post.postedBy.userName}</p>
+
+					{/* post details section */}
+					<div className="relative w-full h-full pt-4">
+						<Link href={`/profile/${post.postedBy._id}`}>
+							<div className="flex gap-4 mb-4 bg-transparent w-full pl-10 cursor-pointer">
+								<Image
+									width={60}
+									height={60}
+									alt="user-profile"
+									className="rounded-full"
+									src={post.postedBy.image}
+								/>
+								<div>
+									<div className="text-xl font-bold lowercase tracking-wider flex gap-2 items-center justify-center">
+										{post.postedBy.userName.replace(/\s+/g, "")}{" "}
+										<GoVerified className="text-blue-400 text-xl" />
 									</div>
+									<p className="text-md"> {post.postedBy.userName}</p>
 								</div>
-							</Link>
-							<div className="px-14">
-								<p className=" text-lg text-gray-300">{post.caption}</p>
 							</div>
-							<div className="mt-10 px-10">
-								{userProfile && (
-									<LikeButton
-										likes={post.likes}
-										flex="flex"
-										handleLike={() => handleLike(true)}
-										handleDislike={() => handleLike(false)}
-									/>
-								)}
-							</div>
-							<Comments
-								comment={comment}
-								setComment={setComment}
-								addComment={addComment}
-								comments={post.comments}
-								isPostingComment={isPostingComment}
-							/>
+						</Link>
+						<div className="px-14">
+							<p className=" text-lg text-gray-300">{post.caption}</p>
 						</div>
+						<div className="px-10">
+							{userProfile && (
+								<LikeButton
+									likes={post.likes}
+									flex="flex"
+									handleLike={() => handleLike(true)}
+									handleDislike={() => handleLike(false)}
+								/>
+							)}
+						</div>
+
+						<Comments
+							comment={comment}
+							setComment={setComment}
+							addComment={addComment}
+							comments={post.comments}
+							isPostingComment={isPostingComment}
+						/>
 					</div>
 				</div>
 			)}

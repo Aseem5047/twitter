@@ -16,13 +16,13 @@ export default function App({ Component, pageProps }: AppProps) {
 		<GoogleOAuthProvider
 			clientId={`${process.env.NEXT_PUBLIC_GOOGLE_API_TOKEN}`}
 		>
-			<div className="xl:w-[1200px] m-auto overflow-hidden h-[100vh] text-white">
+			<div className="xl:w-4/5 m-auto overflow-hidden h-[100vh] text-white">
 				<Navbar />
-				<div className="flex gap-6 md:gap-20">
-					<div className="h-[92vh] overflow-hidden xl:hover:overflow-auto">
+				<div className="flex gap-6 items-start">
+					<div className="h-[92vh] overflow-hidden hover:overflow-auto no-scrollbar pt-5 md:pt-0">
 						<SideBar />
 					</div>
-					<div className="mt-4 flex flex-col gap-10 overflow-auto h-[88vh] flex-1 content">
+					<div className="flex flex-col gap-10 h-[90.5vh] flex-1 content">
 						<Component {...pageProps} />
 					</div>
 				</div>
