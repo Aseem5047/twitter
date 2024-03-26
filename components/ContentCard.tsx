@@ -7,6 +7,7 @@ import { BsFillPlayFill, BsFillPauseFill } from "react-icons/bs";
 import { GoVerified } from "react-icons/go";
 import { BsPlay } from "react-icons/bs";
 import Image from "next/image";
+
 interface IProps {
 	post: Content;
 	isShowingOnHome?: boolean;
