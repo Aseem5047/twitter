@@ -1,5 +1,6 @@
 import Image from "next/image";
 import React from "react";
+import loader from "../utils/Twitter.gif";
 
 const Loader = () => {
 	return (
@@ -7,7 +8,7 @@ const Loader = () => {
 		<>
 			<div className="h-[85vh] flex items-center justify-center">
 				<Image
-					src="/twitter.gif"
+					src={loader}
 					alt="Loading"
 					className="m-auto rounded-xl"
 					width={120}
