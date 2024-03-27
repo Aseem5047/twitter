@@ -9,19 +9,24 @@ interface Prediction {
 }
 
 const Sentiment = () => {
+	// State variables
 	const [tweets, setTweets] = useState([]);
 	const [tweetCount, setTweetCount] = useState(6);
 	const [selectedTweets, setSelectedTweets] = useState<string[]>([]);
 	const [predictions, setPredictions] = useState<Prediction[]>([]);
-	const [loading, setLoading] = useState(true);
 
+	// helper states
+	const [loading, setLoading] = useState(true);
 	const [selectAll, setSelectAll] = useState(false);
 	const [showResult, setShowResult] = useState(false);
 
-	let defaultURL = "https://tweetsentiment.onrender.com";
+	// deployed model to get random_tweets and predictions
+	let defaultURL = "https://aseem44.pythonanywhere.com";
+	let backupURL = "https://tweetsentiment.onrender.com";
 
 	// http://127.0.0.1:5000"
 
+	// Function for fetching random tweets
 	const fetchTweets = async () => {
 		try {
 			setLoading(true);
@@ -34,13 +39,26 @@ const Sentiment = () => {
 			return response.data;
 		} catch (error) {
 			console.error("Error fetching tweets:", error);
-			setSelectedTweets([]);
-			// setPredictions([]);
-			setLoading(false);
-			return [];
+			// If there's an error with the first URL, try the second one
+			try {
+				const response = await axios.post(`${backupURL}/random_tweets`, {
+					count: tweetCount,
+				});
+				setSelectedTweets([]);
+				// setPredictions([]);
+				setLoading(false);
+				return response.data;
+			} catch (secondError) {
+				console.error("Error fetching tweets from backup URL:", secondError);
+				setSelectedTweets([]);
+				// setPredictions([]);
+				setLoading(false);
+				return [];
+			}
 		}
 	};
 
+	// Function for predicting sentiment
 	const predictSentiment = async () => {
 		try {
 			setLoading(true);
@@ -54,12 +72,28 @@ const Sentiment = () => {
 			setLoading(false);
 		} catch (error) {
 			console.error("Error fetching tweets:", error);
-			setSelectedTweets([]);
-			setLoading(false);
-			return [];
+			// If there's an error with the first URL, try the second one
+			try {
+				const response = await axios.post(`${backupURL}/predict`, {
+					tweets: selectedTweets,
+				});
+				setPredictions(response.data.results);
+				setSelectedTweets([]);
+				setShowResult(true);
+				setSelectAll(false);
+				setLoading(false);
+			} catch (secondError) {
+				console.error(
+					"Error predicting sentiment from backup URL:",
+					secondError
+				);
+				setSelectedTweets([]);
+				setLoading(false);
+			}
 		}
 	};
 
+	// Effect hook for fetching data when tweetCount changes
 	useEffect(() => {
 		const fetchData = async () => {
 			const fetchedTweets = await fetchTweets();
@@ -68,11 +102,13 @@ const Sentiment = () => {
 		fetchData();
 	}, [tweetCount]);
 
+	// Event handler for handling tweet count change
 	const handleCountChange = (event: any) => {
 		setTweetCount(event.target.value);
 	};
 
-	const handleSelectTweet = (index: number, currentSelectedTweet: any) => {
+	// Event handler for selecting/deselecting a tweet
+	const handleSelectTweet = (currentSelectedTweet: any) => {
 		let alreadyExists = selectedTweets.some(
 			(tweet) => tweet === currentSelectedTweet
 		);
@@ -86,6 +122,7 @@ const Sentiment = () => {
 		}
 	};
 
+	// Event handler for selecting/deselecting all tweets
 	const handleSelectAll = () => {
 		setSelectAll((prev) => !prev);
 		// If all are selected, deselect
@@ -100,15 +137,21 @@ const Sentiment = () => {
 				<meta name="viewport" content="width=device-width, initial-scale=1" />
 				<link rel="icon" href="/twitter.ico" />
 			</Head>
+
+			{/* Loading Animation to show if Tweets are still Loading */}
 			{loading ? (
 				<Loader />
 			) : (
+				// Main Container
 				<div className="relative flex flex-col h-full justify-start items-start px-4 w-full overflow-y-scroll no-scrollbar">
+					{/* Heading and Count Selector */}
 					<div className="sticky top-0 pb-4 z-10 bg-[#15202b] w-full">
 						<div className="pt-4 flex w-full items-center justify-start gap-4">
 							<p className="px-4 py-2 rounded-xl border-2 border-white w-fit text-base md:text-lg lg:text-xl">
 								{showResult ? "Tweets Sentiments" : "Random Tweets"}
 							</p>
+
+							{/* Count Selector */}
 							{!showResult && (
 								<select
 									className="outline-none border-2 border-gray-200 text-md capitalize p-2 rounded-xl cursor-pointer bg-transparent text-white hover:opacity-80"
@@ -132,6 +175,8 @@ const Sentiment = () => {
 							)}
 						</div>
 					</div>
+
+					{/* Message if No Tweets are Available */}
 					{tweets?.length === 0 ? (
 						<div className="flex h-[75vh] w-full items-center justify-center gap-4">
 							<p className="p-7 rounded-xl border-2 border-white w-fit text-base md sm:text-xl 2xl:text-3xl">
@@ -141,6 +186,7 @@ const Sentiment = () => {
 					) : (
 						<>
 							{showResult ? (
+								// Predictions
 								<div
 									className={`grid grid-cols-1 2xl:grid-cols-2 items-center gap-4 py-2 pb-7 w-full overflow-y-scroll no-scrollbar`}
 								>
@@ -204,6 +250,7 @@ const Sentiment = () => {
 										))}
 								</div>
 							) : (
+								// Tweets List
 								<ul className="py-4 grid grid-cols-1 lg:grid-cols-2 3xl:grid-cols-3 gap-4">
 									{tweets?.map((tweet, index) => (
 										<li
@@ -213,7 +260,7 @@ const Sentiment = () => {
 													(selectedTweet) => selectedTweet === tweet
 												) && "opacity-50"
 											}`}
-											onClick={() => handleSelectTweet(index, tweet)}
+											onClick={() => handleSelectTweet(tweet)}
 										>
 											{tweet}
 										</li>
@@ -221,6 +268,7 @@ const Sentiment = () => {
 								</ul>
 							)}
 
+							{/* Button to Manage Tweets */}
 							<div className="sticky bottom-3 s:bottom-0 pt-4 pb-2 lg:pt-4 lg:pb-7 bg-[#15202b] w-full flex items-center justify-center">
 								{selectedTweets.length > 0 && !showResult ? (
 									<div className="flex gap-4 items-center flex-wrap w-full justify-center">
