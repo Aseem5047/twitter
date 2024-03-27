@@ -22,7 +22,7 @@ export default function Home({ content }: IProps) {
 			<div
 				className={`grid grid-cols-1 overflow-y-scroll ${
 					content.length > 0 && "md:grid-cols-2 3xl:grid-cols-3"
-				}  items-center gap-7 p-7 w-full`}
+				}  items-center gap-7 px-5 w-full`}
 			>
 				{content.length > 0 ? (
 					content.map((item: Content) => (

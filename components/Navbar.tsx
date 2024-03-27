@@ -53,14 +53,14 @@ const Navbar = () => {
 					</span>
 				</div>
 			</Link>
-			<div className="relative hidden lg:block">
-				<div className="absolute md:static top-10 -left-20 bg-transparent">
+			<div className="relative hidden lg:block w-1/4 lg:w-1/3 2xl:w-1/2">
+				<div className="absolute md:static top-10 -left-20 bg-transparent ">
 					<input
 						value={searchTerm}
 						onChange={(e) => setSearchTerm(e.target.value)}
 						type="text"
-						className="w-[300px] md:w-[375px] rounded-full p-4 text-black focus:outline-none text-normal font-medium md:top-0 pl-7"
-						placeholder="Search Accounts and Content"
+						className="w-full rounded-full p-4 text-black focus:outline-none text-normal font-medium md:top-0 pl-7 flex-1"
+						placeholder="Search Accounts and Content "
 					/>
 					<button
 						onClick={handleSearch}
@@ -85,7 +85,7 @@ const Navbar = () => {
 								className="border-2 p-2 md:px-4 text-md font-semibold flex items-center gap-2 rounded-full cursor-pointer hover:opacity-70 -ml-4"
 							>
 								<BiMessageSquareDetail className="text-2xl" />
-								<span className="hidden md:block">Tweets </span>
+								<span className="hidden md:block">Analyse Tweets </span>
 							</button>
 						</Link>
 						{user.image && (

@@ -12,8 +12,8 @@ const NoResults = ({ text }: IProps) => {
 				<BiCommentX />
 			</p>
 			<p className="text-lg text-center">
-				<span className="text-2xl">{text}</span> <br /> <br /> Upload the Post &
-				Be First to do <br /> add the comment or Like the Post.
+				<span className="text-lg md:text-2xl">{text}</span> <br /> <br /> Upload
+				the Post & Be First to do <br /> add the comment or Like the Post.
 			</p>
 		</div>
 	);

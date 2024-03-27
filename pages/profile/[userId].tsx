@@ -42,8 +42,8 @@ const Profile = ({ data }: IProps) => {
 	console.log(data);
 
 	return (
-		<div className="w-full pb-7 overflow-y-scroll no-scrollbar">
-			<div className="flex gap-6 md:gap-10 mb-4 bg-transparent w-full">
+		<div className="relative w-full py-7 px-4 md:px-0 md:pl-4 overflow-y-scroll no-scrollbar">
+			<div className=" flex gap-6 md:gap-10 w-full">
 				<div className="w-16 h-16 md:w-32 md:h-32">
 					<Image
 						width={120}
@@ -63,7 +63,7 @@ const Profile = ({ data }: IProps) => {
 				</div>
 			</div>
 
-			<div className="flex gap-10 bg-transparent w-full">
+			<div className="sticky top-0 z-40 py-2 pb-4 bg-[#15202b] flex gap-10 w-full">
 				<p
 					className={`text-xl font-semibold cursor-pointer ${Contents} mt-2`}
 					onClick={() => setShowUserContent(true)}
@@ -77,15 +77,17 @@ const Profile = ({ data }: IProps) => {
 					Liked
 				</p>
 			</div>
-			<div className="grid grid-cols-1 md:grid-cols-2 3xl:grid-cols-4 items-center w-fit gap-4 mt-10 ">
+			<div className="grid grid-cols-1 md:grid-cols-2 3xl:grid-cols-4 items-center w-full gap-4">
 				{contentList?.length > 0 ? (
 					contentList.map((post: Content, idx: number) => (
 						<ContentCard key={idx} post={post} />
 					))
 				) : (
-					<NoResults
-						text={`No ${showUserContent ? "" : "Liked"} Contents Yet`}
-					/>
+					<div className="pt-20">
+						<NoResults
+							text={`No ${showUserContent ? "" : "Liked"} Contents Yet`}
+						/>
+					</div>
 				)}
 			</div>
 		</div>

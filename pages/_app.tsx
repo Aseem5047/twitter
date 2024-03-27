@@ -24,7 +24,7 @@ export default function App({ Component, pageProps }: AppProps) {
 		<GoogleOAuthProvider
 			clientId={`${process.env.NEXT_PUBLIC_GOOGLE_API_TOKEN}`}
 		>
-			<div className="w-full px-2 lg:px-0 lg:w-[88%] m-auto overflow-hidden h-[100vh] text-white">
+			<div className="w-full px-2 lg:px-7 xl:px-16 m-auto overflow-hidden h-[100vh] text-white">
 				<Navbar />
 				{/* Conditional rendering based on loading state */}
 				{loading ? (

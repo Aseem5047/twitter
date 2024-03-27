@@ -81,7 +81,7 @@ const Search = ({ content }: IProps) => {
 			) : (
 				<div
 					className={`grid grid-cols-1 ${
-						content.length > 0 && "md:grid-cols-2 !w-fit"
+						content.length > 0 && "md:grid-cols-2 3xl:grid-cols-3"
 					}  items-center gap-4 mt-7 w-full`}
 				>
 					{content.length > 0 ? (

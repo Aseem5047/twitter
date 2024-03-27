@@ -40,7 +40,7 @@ const ContentCard: NextPage<IProps> = ({
 
 	if (!isShowingOnHome) {
 		return (
-			<div className="flex flex-col items-start justify-center w-full">
+			<div className="flex flex-col justify-center w-full">
 				<Link href={`/detail/${_id}`}>
 					{video !== null ? (
 						<video
