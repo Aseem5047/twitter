@@ -14,9 +14,14 @@ const Sentiment = () => {
 	const [predictions, setPredictions] = useState<Prediction[]>([]); // Annotate predictions with Prediction[] type
 	const [selectAll, setSelectAll] = useState(false);
 	const [showResult, setShowResult] = useState(false);
+
+	let defaultURL = "https://tweetsentiment.onrender.com";
+
+	// http://127.0.0.1:5000"
+
 	const fetchTweets = async () => {
 		try {
-			const response = await axios.post("http://127.0.0.1:5000/random_tweets", {
+			const response = await axios.post(`${defaultURL}/random_tweets`, {
 				count: tweetCount,
 			});
 			setSelectedTweets([]);
@@ -32,10 +37,9 @@ const Sentiment = () => {
 
 	const predictSentiment = async () => {
 		try {
-			const response = await axios.post("http://127.0.0.1:5000/predict", {
+			const response = await axios.post(`${defaultURL}/predict`, {
 				tweets: selectedTweets,
 			});
-
 			setPredictions(response.data.results);
 			setSelectedTweets([]);
 			setShowResult(true);
@@ -79,8 +83,6 @@ const Sentiment = () => {
 		selectAll ? setSelectedTweets([]) : setSelectedTweets(tweets);
 	};
 
-	console.log(tweets);
-
 	return (
 		<>
 			<Head>
@@ -120,7 +122,7 @@ const Sentiment = () => {
 				</div>
 				{tweets?.length === 0 ? (
 					<div className="flex h-[75vh] w-full items-center justify-center gap-4">
-						<p className="p-7 rounded-xl border-2 border-white w-fit text-xl 2xl:text-3xl">
+						<p className="p-7 rounded-xl border-2 border-white w-fit text-base md sm:text-xl 2xl:text-3xl">
 							No Tweets Available Yet!
 						</p>
 					</div>
