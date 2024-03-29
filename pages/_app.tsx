@@ -31,7 +31,7 @@ export default function App({ Component, pageProps }: AppProps) {
 					<Loader /> // Render loader when loading is true
 				) : (
 					<div className="flex gap-2 lg:gap-6 items-start">
-						<div className="h-[92vh] overflow-hidden hover:overflow-auto no-scrollbar pt-5 md:pt-0">
+						<div className="h-[92vh] overflow-x-hidden overflow-y-scroll no-scrollbar pt-5 md:pt-0">
 							<SideBar />
 						</div>
 						<div className="flex flex-col gap-10 h-[90.5vh] flex-1 content">

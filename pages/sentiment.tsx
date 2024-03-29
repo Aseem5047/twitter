@@ -269,7 +269,7 @@ const Sentiment = () => {
 							)}
 
 							{/* Button to Manage Tweets */}
-							<div className="sticky bottom-3 s:bottom-0 pt-4 pb-2 lg:pt-4 lg:pb-7 bg-[#15202b] w-full flex items-center justify-center">
+							<div className="sticky bottom-0 pt-4 pb-7 bg-[#15202b] w-full flex items-center justify-center">
 								{selectedTweets.length > 0 && !showResult ? (
 									<div className="flex gap-4 items-center flex-wrap w-full justify-center">
 										<button
