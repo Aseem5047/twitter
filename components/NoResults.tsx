@@ -3,11 +3,17 @@ import { BiCommentX } from "react-icons/bi";
 
 interface IProps {
 	text: string;
+	coverScreen?: boolean;
 }
 
-const NoResults = ({ text }: IProps) => {
+const NoResults = ({ text, coverScreen = true }: IProps) => {
 	return (
-		<div className="flex flex-col justify-center items-center h-full w-full ">
+		<div
+			className={`flex flex-col justify-center items-center ${
+				coverScreen ? "h-[calc(100vh-10rem)]" : "h-full"
+			}
+ w-full overflow-hidden`}
+		>
 			<p className="text-8xl mb-2">
 				<BiCommentX />
 			</p>

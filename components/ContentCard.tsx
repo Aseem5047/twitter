@@ -46,17 +46,17 @@ const ContentCard: NextPage<IProps> = ({
 						<video
 							loop
 							src={video.asset.url}
-							className="w-full h-[300px] aspect-square  rounded-2xl cursor-pointer bg-gray-800 object-cover"
-							width={300}
-							height={300}
+							className="w-full h-[350px] aspect-square  rounded-2xl cursor-pointer bg-gray-800 object-cover"
+							width={350}
+							height={350}
 						></video>
 					) : (
 						<Image
 							src={image.asset.url}
 							className="w-full h-full object-cover aspect-square rounded-2xl cursor-pointer bg-gray-800"
 							alt="Post"
-							width={300}
-							height={300}
+							width={350}
+							height={350}
 						/>
 					)}
 				</Link>
