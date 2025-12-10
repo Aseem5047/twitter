@@ -1,10 +1,12 @@
 ## Twitter Clone https://twitterrrx.vercel.app
 
-# This application enables users to create accounts, upload and share photos or videos, interact through likes and comments, and explore content via user profiles and usernames. It also features an integrated Emotion Detection AI model that analyzes any given tweet and classifies its sentiment as positive, negative, or neutral, enhancing content insights and user engagement.
+### This application enables users to create accounts, upload and share photos or videos, interact through likes and comments, and explore content via user profiles and usernames. 
 
 ![image](https://github.com/Aseem5047/twitter/assets/80787027/2ff31437-166e-4da2-9f15-994548933c01)
 
 ![image](https://user-images.githubusercontent.com/80787027/229783497-fd711df7-a9a0-4dbe-89ca-b8e2e0c6cb6f.png)
+
+### It also features an integrated Emotion Detection AI model that analyzes any given tweet and classifies its sentiment as positive, negative, or neutral, enhancing content insights and user engagement.
 
 # Tech Used
   * NextJs
@@ -22,4 +24,5 @@
   * Download the code on your machine
   * npm i
   * npm run dev
+
 
